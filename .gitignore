@@ -149,6 +149,7 @@ configs/local/default.yaml
 /checkpoints/
 /data/
 /forks/flowmm/remote/diffcsp_official/data/mp_20/*.json
+/forks/triton-cpu/
 /logs/
 /tests/*.json
 /wandb/
