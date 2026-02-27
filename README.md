@@ -95,7 +95,6 @@ pip install --no-build-isolation pyeqeq
 pip install -e .
 
 # Install Triton with CPU support
-mkdir forks/
 cd forks/
 git clone https://github.com/triton-lang/triton-cpu.git
 cd triton-cpu/
@@ -104,7 +103,6 @@ git submodule update --init --recursive
 pip install -r python/requirements.txt
 pip install -e python
 cd ../../
-rm -rf forks/
 
 # [OPTIONAL] Install pre-commit hooks
 pre-commit install
