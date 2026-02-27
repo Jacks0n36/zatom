@@ -53,7 +53,7 @@ git clone https://github.com/Zatom-AI/zatom
 cd zatom
 
 # [OPTIONAL] Create Conda environment
-conda create -n zatom -c conda-forge python=3.10 gcc=11.4.0 gxx=11.4.0 libstdcxx=14.1.0 libstdcxx-ng=14.1.0 libgcc=14.1.0 libgcc-ng=14.1.0 compilers=1.5.2
+conda create -n zatom -c conda-forge python=3.10 gcc=11.4.0 gxx=11.4.0 libstdcxx=14.1.0 libstdcxx-ng=14.1.0 libgcc=14.1.0 libgcc-ng=14.1.0 compilers=1.5.2 libconeangle=0.1.1
 conda activate zatom
 
 # Install requirements
@@ -83,21 +83,28 @@ git clone https://github.com/Zatom-AI/zatom
 cd zatom
 
 # [OPTIONAL] Create Conda environment
-conda create -n zatom -c conda-forge python=3.10 clang=18 clangxx=18 libcxx=18 libcxx-devel=18 libgfortran5=15.1.0 lld=20.1.7 pybind11=3.0.0
+conda create -n zatom -c conda-forge python=3.10 clang=18 clangxx=18 libcxx=18 libcxx-devel=18 libgfortran5=15.1.0 lld=20.1.7 pybind11=3.0.0 libconeangle=0.1.1
 conda activate zatom
 
 # Install `pyeqeq`
 export CC=clang
 export CXX=clang++
-export CPPFLAGS="-isystem $CONDA_PREFIX/include -isystem $CONDA_PREFIX/include/c++/v1"
-export CXXFLAGS="-std=c++17"
-export LDFLAGS="-fuse-ld=lld -L$CONDA_PREFIX/lib"
-export DYLD_LIBRARY_PATH="$CONDA_PREFIX/lib:$DYLD_LIBRARY_PATH"
 pip install --no-build-isolation pyeqeq
-unset DYLD_LIBRARY_PATH
 
 # Install requirements
 pip install -e .
+
+# Install Triton with CPU support
+mkdir forks/
+cd forks/
+git clone https://github.com/triton-lang/triton-cpu.git
+cd triton-cpu/
+git checkout e60f448f8f197073b75d6d3e77347414a5db3ee7
+git submodule update --init --recursive
+pip install -r python/requirements.txt
+pip install -e python
+cd ../../
+rm -rf forks/
 
 # [OPTIONAL] Install pre-commit hooks
 pre-commit install
