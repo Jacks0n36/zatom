@@ -520,8 +520,11 @@ If you use the code or data associated with this package or otherwise find this 
 @article{zatom_1_2026,
     title={Zatom-1: A Multimodal Flow Foundation Model for 3D Molecules and Materials},
     author={Alex Morehead* and Miruna Cretu* and Antonia Panescu* and Rishabh Anand* and Maurice Weiler* and Tynan Perez* and Samuel Blau and Steven Farrell and Wahid Bhimji and Anubhav Jain and Hrushikesh Sahasrabuddhe and Pietro Liò and Tommi Jaakkola and Rafael Gómez-Bombarelli and Rex Ying* and Ben Erichson* and Michael Mahoney*},
-    journal={arXiv},
-    year=2026,
+    year={2026},
+    eprint={2602.22251},
+    archivePrefix={arXiv},
+    primaryClass={cs.LG},
+    url={https://arxiv.org/abs/2602.22251},
     note={* denotes equal contribution}
 }
 ```
