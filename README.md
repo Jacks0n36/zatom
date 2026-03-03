@@ -201,6 +201,18 @@ wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_qm9_only_
 
 <details>
 
+Download datasets from Hugging Face
+
+```bash
+# Download a single dataset
+python zatom/data/download_data.py --dataset qm9
+
+# Download all Zatom datasets (recommended)
+python zatom/data/download_data.py --dataset all
+```
+
+> By default, all datasets are downloaded to 'data/'. This can be changed in `zatom/data/download_data.py`.
+
 Train model with default configuration
 
 > 💡 Note: The first time (only) you run the code, you'll need to uncomment Line 75 (`datamodule.setup()`) of `zatom/train_fm.py` to download each dataset's metadata for subsequent training or evaluation runs.
