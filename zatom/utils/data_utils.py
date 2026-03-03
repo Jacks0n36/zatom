@@ -10,7 +10,7 @@ from typing import Any, Dict, Optional, Union
 import ase
 import numpy as np
 import torch
-from huggingface_hub import hf_hub_download
+from huggingface_hub import hf_hub_download, list_repo_files
 from mendeleev import element
 from torch_geometric.data import Dataset
 from tqdm import tqdm
@@ -395,6 +395,7 @@ def hf_download_file(
     filename: str,
     repo_type: str = "dataset",
     local_root: Optional[Union[str, Path]] = None,
+    name_by_subdir: bool = False,
     overwrite: bool = False,
     decompress: bool = True,
     verbose: bool = False,
@@ -417,6 +418,7 @@ def hf_download_file(
         filename: Name or path of the file in the repo to download
         repo_type: Type of the HF repo ("dataset" or "model")
         local_root: Root directory to store and decompress the downloaded files
+        name_by_subdir: if True, local directory uses only '{dataset}' instead of '{username}__{dataset}'
         overwrite: If True, redownload even if the file already exists locally
         decompress: If True, decompress the file if it is compressed
         verbose: If True, print progress and info messages
@@ -432,8 +434,11 @@ def hf_download_file(
 
     local_root = Path(local_root)
 
-    # Make repo_id filesystem-friendly (i.e., replace "/" with "__")
-    repo_dir = local_root / repo_id.replace("/", "__")
+    # Make repo_id filesystem-friendly
+    if name_by_subdir:
+        repo_dir = local_root / repo_id.split("/")[-1]
+    else:
+        repo_dir = local_root / repo_id.replace("/", "__")
 
     target_path = repo_dir / filename
 
@@ -562,3 +567,102 @@ def hf_download_file(
 
     # Not compressed (or unsupported): just return the copied file
     return target_path
+
+
+@typecheck
+def hf_download_repo(
+    repo_id: str,
+    repo_type: str = "dataset",
+    local_root: Union[str, Path] = None,
+    name_by_subdir: bool = False,
+    ignore_files: list = None,
+    overwrite: bool = False,
+    decompress: bool = True,
+    verbose: bool = False,
+) -> Path:
+    """Download all files from a Hugging Face repo to a local directory.
+
+    Downloads all files from the specified HF repo and places them under:
+        <local_root>/<repo_id>/
+
+    Compressed files are decompressed by default.
+
+    Args:
+        repo_id: e.g. "username/my-dataset"
+        repo_type: type of the HF repo ("dataset" or "model")
+        local_root: root directory to store downloaded files. Default is the HF datasets cache directory if none is provided.
+        name_by_subdir: if True, downloaded repo name will include only the subdirectory name '{dataset}' vs '{username}__{dataset}' (default False)
+        ignore_files : list of file names to ignore (not download) from the repo, e.g. ["file_to_skip.csv", "data/ignore_this_file.json"]
+        overwrite: if True, redownload even if files already exist locally
+        decompress: if True, decompress compressed files
+        verbose: if True, print detailed progress information
+
+    Returns:
+        Path to the local repo directory containing all downloaded files
+    """
+    if local_root is None:
+        local_root = hf_datasets_path()
+
+    local_root = Path(local_root)
+
+    if name_by_subdir:
+        # Extract subdir name (e.g. "my-dataset" from "username/my-dataset")
+        repo_dir = local_root / repo_id.split("/")[-1]
+        log.info(
+            f"Using name_by_subdir=True, repo will be downloaded to {repo_dir} instead of {local_root / repo_id.replace('/', '__')}"
+        )
+    else:
+        # Make repo_id filesystem-friendly (replace "/" with "__")
+        repo_dir = local_root / repo_id.replace("/", "__")
+
+    # Check if repo already exists and skip if not overwriting
+    if repo_dir.exists() and not overwrite:
+        if verbose:
+            log.info(
+                f"Repo directory {repo_dir} already exists and overwrite is False, skipping download. To redownload, set overwrite=True"
+            )
+        return repo_dir
+
+    # Get list of all files in the repo
+    log.info(f"Fetching file list from repo {repo_id} (type={repo_type})...")
+    try:
+        files = list_repo_files(repo_id=repo_id, repo_type=repo_type)
+    except Exception as e:
+        raise RuntimeError(f"Failed to list files from repo {repo_id}: {e}")
+
+    if verbose:
+        log.info(f"Found {len(files)} files to download")
+
+    # Download each file
+    downloaded_paths = []
+    for filename in tqdm(files, desc=f"Downloading {repo_id}", unit="files"):
+        if ignore_files and filename in ignore_files:
+            if verbose:
+                log.info(f"Ignoring file {filename} as it is in the ignore list")
+            continue
+        try:
+            if verbose:
+                log.info(f"Downloading {filename}...")
+
+            downloaded_path = hf_download_file(
+                repo_id=repo_id,
+                filename=filename,
+                repo_type=repo_type,
+                local_root=local_root,
+                name_by_subdir=name_by_subdir,
+                overwrite=overwrite,
+                decompress=decompress,
+                verbose=verbose,
+            )
+            downloaded_paths.append(downloaded_path)
+
+        except Exception as e:
+            log.warning(f"Failed to download {filename}: {e}")
+            continue
+
+    if verbose:
+        log.info(
+            f"Successfully downloaded {len(downloaded_paths)} files to {repo_dir}"
+        )
+
+    return repo_dir
