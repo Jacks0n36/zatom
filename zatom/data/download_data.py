@@ -29,6 +29,7 @@ _avail_datasets = [
 ]
 _datasets_requiring_raw_files = [
     "qm9",
+    "mp_20",
     "matbench",
     "omol25",
 ]  # Datasets that require raw files to be downloaded
