@@ -96,6 +96,11 @@ class MPtrj(InMemoryDataset):
         """Download the dataset."""
         from huggingface_hub import hf_hub_download
 
+        if os.path.exists(os.path.join(self.root, "raw", f"{self.split}.pt")) or os.path.exists(
+            os.path.join(self.root, "processed", f"{self.split}.pt")
+        ):
+            return
+
         for split_file in self.split_files:
             hf_hub_download(  # nosec
                 repo_id="nimashoghi/mptrj",

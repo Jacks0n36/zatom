@@ -75,6 +75,11 @@ class QMOF150(InMemoryDataset):
 
         from huggingface_hub import hf_hub_download
 
+        if os.path.exists(os.path.join(self.root, "raw", "all.pt")) or os.path.exists(
+            os.path.join(self.root, "processed", "qmof150.pt")
+        ):
+            return
+
         hf_hub_download(  # nosec
             repo_id="chaitjo/QMOF150_ADiT",
             filename=os.path.join("raw", "relaxed_structures.zip"),

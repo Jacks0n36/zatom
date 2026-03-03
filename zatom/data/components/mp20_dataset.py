@@ -71,6 +71,11 @@ class MP20(InMemoryDataset):
         """Download the dataset."""
         from huggingface_hub import hf_hub_download
 
+        if os.path.exists(os.path.join(self.root, "raw", "all.pt")) or os.path.exists(
+            os.path.join(self.root, "processed", "mp20.pt")
+        ):
+            return
+
         hf_hub_download(  # nosec
             repo_id="chaitjo/MP20_ADiT",
             filename=os.path.join("raw", "all.csv"),

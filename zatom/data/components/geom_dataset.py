@@ -97,8 +97,8 @@ class GEOM(InMemoryDataset):
         # Dataset files
         url = f"https://bits.csb.pitt.edu/files/geom_raw/{self.split}_data.pickle"
 
-        # Skip download if pickle file already exists
-        if os.path.exists(self.pickle_file):
+        # Skip download if pickle file or processed file already exists
+        if os.path.exists(self.pickle_file) or os.path.exists(self.processed_file):
             return
 
         # Download raw data if necessary
