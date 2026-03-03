@@ -211,8 +211,8 @@ class JointDataModule(LightningDataModule):
         #     ]
         # )
         # torch.save(
-        #     torch.bincount(num_nodes),
-        #     os.path.join(self.hparams.datasets.qm9.root, "num_nodes_bincount.pt"),
+        #     num_nodes,
+        #     os.path.join(self.hparams.datasets.qm9.root, "num_nodes.pt"),
         # )
         # torch.save(smiles, os.path.join(self.hparams.datasets.qm9.root, "smiles.pt"))
         # Select target properties if specified
@@ -291,8 +291,8 @@ class JointDataModule(LightningDataModule):
         # num_nodes = torch.tensor([data["num_nodes"] for data in mp20_dataset])
         # spacegroups = torch.tensor([data["spacegroup"] for data in mp20_dataset])
         # torch.save(
-        #     torch.bincount(num_nodes),
-        #     os.path.join(self.hparams.datasets.mp20.root, "num_nodes_bincount.pt"),
+        #     num_nodes,
+        #     os.path.join(self.hparams.datasets.mp20.root, "num_nodes.pt"),
         # )
         # torch.save(
         #     torch.bincount(spacegroups),
@@ -329,8 +329,8 @@ class JointDataModule(LightningDataModule):
         # num_nodes = torch.tensor([data["num_nodes"] for data in qmof150_dataset])
         # spacegroups = torch.tensor([data["spacegroup"] for data in qmof150_dataset])
         # torch.save(
-        #     torch.bincount(num_nodes),
-        #     os.path.join(self.hparams.datasets.qmof150.root, "num_nodes_bincount.pt"),
+        #     num_nodes,
+        #     os.path.join(self.hparams.datasets.qmof150.root, "num_nodes.pt"),
         # )
         # torch.save(
         #     torch.bincount(spacegroups),
@@ -391,8 +391,8 @@ class JointDataModule(LightningDataModule):
         #     ]
         # )
         # torch.save(
-        #     torch.bincount(num_nodes),
-        #     os.path.join(self.hparams.datasets.omol25.root, "num_nodes_bincount.pt"),
+        #     num_nodes,
+        #     os.path.join(self.hparams.datasets.omol25.root, "num_nodes.pt"),
         # )
         # torch.save(smiles, os.path.join(self.hparams.datasets.omol25.root, "smiles.pt"))
         # Normalize energy and force prediction targets per data sample using training set statistics
@@ -468,8 +468,8 @@ class JointDataModule(LightningDataModule):
         #     ]
         # )
         # torch.save(
-        #     torch.bincount(num_nodes),
-        #     os.path.join(self.hparams.datasets.geom.root, "num_nodes_bincount.pt"),
+        #     num_nodes,
+        #     os.path.join(self.hparams.datasets.geom.root, "num_nodes.pt"),
         # )
         # torch.save(smiles, os.path.join(self.hparams.datasets.geom.root, "smiles.pt"))
         # Retain subset of dataset; can be used to train on only one dataset, too
@@ -531,8 +531,8 @@ class JointDataModule(LightningDataModule):
         #     ]
         # )
         # torch.save(
-        #     torch.bincount(num_nodes),
-        #     os.path.join(self.hparams.datasets.mptrj.root, "num_nodes_bincount.pt"),
+        #     num_nodes,
+        #     os.path.join(self.hparams.datasets.mptrj.root, "num_nodes.pt"),
         # )
         # torch.save(
         #     torch.bincount(spacegroups),
@@ -637,8 +637,8 @@ class JointDataModule(LightningDataModule):
         #     ]
         # )
         # torch.save(
-        #     torch.bincount(num_nodes),
-        #     os.path.join(self.hparams.datasets.matbench.root, "num_nodes_bincount.pt"),
+        #     num_nodes,
+        #     os.path.join(self.hparams.datasets.matbench.root, "num_nodes.pt"),
         # )
         # torch.save(
         #     torch.bincount(spacegroups),
