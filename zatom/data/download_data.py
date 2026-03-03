@@ -27,6 +27,11 @@ _avail_datasets = [
     "matbench",
     "omol25",
 ]
+_datasets_requiring_raw_files = [
+    "qm9",
+    "matbench",
+    "omol25",
+]  # Datasets that require raw files to be downloaded
 
 # Set global dataset path
 _dataset_path = "data/"
@@ -55,7 +60,7 @@ def get_zatom_dataset(dataset_name: str, root: str = _dataset_path) -> str:
         local_root=root,  # Root directory to save the dataset
         name_by_subdir=True,  # Each dataset repo is saved in a subdirectory named after the dataset
         ignore_files=(
-            None if dataset_name == "omol25" else ["raw.tar.gz"]
+            None if dataset_name in _datasets_requiring_raw_files else ["raw.tar.gz"]
         ),  # Ignore unnecessary raw files to save space
     )
     return dataset_path
