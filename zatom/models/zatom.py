@@ -334,19 +334,19 @@ class Zatom(LightningModule):
             elif dataset == "qmof150":
                 dir_name = "qmof"
 
-            # num_nodes_bincount
-            nodes_path = os.path.join(
-                self.hparams.sampling.data_dir, dir_name, "num_nodes_bincount.pt"
-            )
+            # num_nodes
+            nodes_path = os.path.join(self.hparams.sampling.data_dir, dir_name, "num_nodes.pt")
             # Fallback: check in dataset root directory if primary path doesn't exist
             if not os.path.exists(nodes_path) and hasattr(cfg, "root") and cfg.root:
-                fallback_path = os.path.join(cfg.root, "num_nodes_bincount.pt")
+                fallback_path = os.path.join(cfg.root, "num_nodes.pt")
                 if os.path.exists(fallback_path):
                     nodes_path = fallback_path
             if os.path.exists(nodes_path):
-                self.num_nodes_bincount[dataset] = torch.nn.Parameter(
-                    torch.load(nodes_path, map_location="cpu"),  # nosec
-                    requires_grad=False,
+                self.num_nodes_bincount[dataset] = torch.bincount(
+                    torch.nn.Parameter(
+                        torch.load(nodes_path, map_location="cpu"),  # nosec
+                        requires_grad=False,
+                    )
                 )
             else:
                 self.num_nodes_bincount[dataset] = None
@@ -1025,18 +1025,18 @@ class Zatom(LightningModule):
                     dir_name = "qmof"
 
                 primary_path = os.path.join(
-                    self.hparams.sampling.data_dir, dir_name, "num_nodes_bincount.pt"
+                    self.hparams.sampling.data_dir, dir_name, "num_nodes.pt"
                 )
                 fallback_path = None
                 if dataset in self.hparams.datasets and hasattr(
                     self.hparams.datasets[dataset], "root"
                 ):
                     fallback_path = os.path.join(
-                        self.hparams.datasets[dataset].root, "num_nodes_bincount.pt"
+                        self.hparams.datasets[dataset].root, "num_nodes.pt"
                     )
 
                 error_msg = (
-                    f"num_nodes_bincount file not found for dataset '{dataset}'. "
+                    f"num_nodes file not found for dataset '{dataset}'. "
                     f"Expected at: {primary_path}"
                 )
                 if fallback_path:
