@@ -169,28 +169,33 @@ One can download pretrained/finetuned Zatom-1 checkpoints as needed.
 ```bash
 mkdir checkpoints/
 
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_joint_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_joint_mat_prop_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_mat_prop_paper_weights.ckpt
 
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_joint_pretraining_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_l_joint_pretraining_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_xl_joint_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_l_joint_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_xl_joint_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_wd_joint_pretraining_paper_weights.ckpt
 
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/platom_1_joint_pretraining_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_mp20_only_pretraining_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_qm9_only_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/platom_1_qm9_only_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_mp20_only_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_qm9_only_pretraining_paper_weights.ckpt
 
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_joint_geom_pretraining_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_qmof_only_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_geom_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_qmof_only_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_omol25_only_pretraining_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_omol25_only_mlip_pretraining_paper_weights.ckpt
 
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_joint_mol_prop_pred_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_non_pretrained_mol_prop_pred_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_qm9_only_mol_prop_pred_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_joint_mid_layer_mol_prop_pred_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_xl_joint_mol_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_mol_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_non_pretrained_mol_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_qm9_only_mol_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_k25_layer_mol_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_mid_layer_mol_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_k75_layer_mol_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_xl_joint_mol_prop_pred_paper_weights.ckpt
 
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_joint_mol_and_mat_prop_pred_paper_weights.ckpt
-wget -P checkpoints/ https://zenodo.org/records/18248567/files/zatom_1_qm9_only_mol_and_mat_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_joint_mol_and_mat_prop_pred_paper_weights.ckpt
+wget -P checkpoints/ https://zenodo.org/records/18894015/files/zatom_1_qm9_only_mol_and_mat_prop_pred_paper_weights.ckpt
 ```
 
 </details>
@@ -359,9 +364,15 @@ python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_joint_paper_weights.ckpt d
 
 One can download 10,000 materials and molecules sampled with Zatom-1.
 
-- [Materials as CIF files](https://zenodo.org/records/18248567/files/zatom_1_materials_mp20.zip) (MP20)
-- [Molecules as PDB files](https://zenodo.org/records/18248567/files/zatom_1_molecules_qm9.zip) (QM9)
-- [Molecules as PDB files](https://zenodo.org/records/18248567/files/zatom_1_molecules_geom.zip) (GEOM-Drugs)
+- [Materials as CIF files](https://zenodo.org/records/18894015/files/zatom_1_materials_mp20.zip) (MP20)
+- [Molecules as PDB files](https://zenodo.org/records/18894015/files/zatom_1_molecules_qm9.zip) (QM9)
+- [Molecules as PDB files](https://zenodo.org/records/18894015/files/zatom_1_molecules_geom.zip) (GEOM-Drugs)
+
+If desired, unzip `zatom_1_materials_mp20.zip` and `zatom_1_molecules_qm9.zip` and move `zatom_1_materials_mp20/` and `zatom_1_molecules_qm9/` under the new directory `data/gen_samples/`. One can then analyze Zatom-1's shared latent space for molecules and materials as follows.
+
+```bash
+python scripts/plot_embeddings.py
+```
 
 </details>
 
@@ -382,11 +393,12 @@ uv run scripts/run_benchmarks.py --cifs logs/eval_fm/runs/eval_tft_80M_MP20_izr5
 
 One can also download Zatom-1's leaderboard-compatible results for LeMat-GenBench.
 
-- [Results for MP20-only Zatom-1](https://zenodo.org/records/18248567/files/lemat_genbench_mp20_only_zatom_1.zip) (MP20-only Zatom-1)
-- [Results for jointly trained Platom-1](https://zenodo.org/records/18248567/files/lemat_genbench_jointly_trained_platom_1.zip) (Jointly trained Platom-1)
-- [Results for jointly trained Zatom-1](https://zenodo.org/records/18248567/files/lemat_genbench_jointly_trained_zatom_1.zip) (Jointly trained Zatom-1)
-- [Results for jointly trained Zatom-1-L](https://zenodo.org/records/18248567/files/lemat_genbench_jointly_trained_zatom_1_l.zip) (Jointly trained Zatom-1-L)
-- [Results for jointly trained Zatom-1-XL](https://zenodo.org/records/18248567/files/lemat_genbench_jointly_trained_zatom_1_xl.zip) (Jointly trained Zatom-1-XL)
+- [Results for MP20-only Zatom-1](https://zenodo.org/records/18894015/files/lemat_genbench_mp20_only_zatom_1.zip) (MP20-only Zatom-1)
+- [Results for jointly trained Platom-1](https://zenodo.org/records/18894015/files/lemat_genbench_jointly_trained_platom_1.zip) (Jointly trained Platom-1)
+- [Results for jointly trained Zatom-1](https://zenodo.org/records/18894015/files/lemat_genbench_jointly_trained_zatom_1.zip) (Jointly trained Zatom-1)
+- [Results for jointly trained Zatom-1-L](https://zenodo.org/records/18894015/files/lemat_genbench_jointly_trained_zatom_1_l.zip) (Jointly trained Zatom-1-L)
+- [Results for jointly trained Zatom-1-XL](https://zenodo.org/records/18894015/files/lemat_genbench_jointly_trained_zatom_1_xl.zip) (Jointly trained Zatom-1-XL)
+- [Results for jointly trained Zatom-1-WD](https://zenodo.org/records/18894015/files/lemat_genbench_jointly_trained_zatom_1_wd.zip) (Jointly trained Zatom-1-WD)
 
 </details>
 
