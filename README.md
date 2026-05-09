@@ -268,7 +268,7 @@ python zatom/train_fm.py trainer.max_epochs=2000 data.datamodule.batch_size.trai
 To generate Zatom-1's initial evaluation metrics for (QM9) molecule and (MP20) material generation
 
 ```bash
-python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_joint_paper_weights.ckpt model.sampling.num_samples=10000 model.sampling.batch_size=1000 name=eval_tft_80M_QM9+MP20_dcz004rv seed=42 trainer=gpu
+python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_joint_paper_weights.ckpt model.architecture.aux_mlip_hidden_size=1024 model.sampling.num_samples=10000 model.sampling.batch_size=1000 name=eval_tft_80M_QM9+MP20_dcz004rv seed=42 trainer=gpu
 ```
 
 To generate Zatom-1-XL's initial evaluation metrics for (QM9) molecule and (MP20) material generation
@@ -286,13 +286,13 @@ python zatom/eval_fm.py ckpt_path=checkpoints/platom_1_joint_pretraining_paper_w
 To generate Zatom-1's evaluation metrics for (QM9) molecule generation only
 
 ```bash
-python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_joint_paper_weights.ckpt data.datamodule.datasets.mp20.proportion=0.0 model.sampling.num_samples=10000 model.sampling.batch_size=1000 name=eval_tft_80M_QM9_myog4xe0 seed=42 trainer=gpu
+python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_joint_paper_weights.ckpt data.datamodule.datasets.mp20.proportion=0.0 model.architecture.aux_mlip_hidden_size=1024 model.sampling.num_samples=10000 model.sampling.batch_size=1000 name=eval_tft_80M_QM9_myog4xe0 seed=42 trainer=gpu
 ```
 
 To generate Zatom-1's initial evaluation metrics for (MP20) material generation only
 
 ```bash
-python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_joint_paper_weights.ckpt data.datamodule.datasets.qm9.proportion=0.0 model.sampling.num_samples=10000 model.sampling.batch_size=1000 name=eval_tft_80M_MP20_5suq0fu0 seed=42 trainer=gpu
+python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_joint_paper_weights.ckpt data.datamodule.datasets.qm9.proportion=0.0 model.architecture.aux_mlip_hidden_size=1024 model.sampling.num_samples=10000 model.sampling.batch_size=1000 name=eval_tft_80M_MP20_5suq0fu0 seed=42 trainer=gpu
 ```
 
 To generate Zatom-1's evaluation metrics for (GEOM-Drugs) molecule generation only
