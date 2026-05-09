@@ -307,6 +307,8 @@ To generate Zatom-1's evaluation metrics for (QMOF150) material generation only
 python zatom/eval_fm.py ckpt_path=checkpoints/zatom_1_qmof_only_pretraining_paper_weights.ckpt data.datamodule.datasets.mp20.proportion=0.0 data.datamodule.datasets.qm9.proportion=0.0 data.datamodule.datasets.qmof150.proportion=1.0 model.sampling.num_samples=1000 model.sampling.batch_size=100 name=eval_tft_80M_QMOF_s6uzclqf seed=42 trainer=gpu
 ```
 
+> 💡 Note: If `eval_fm.py` is taking too long to initialize all its dataloader workers, pass `data.datamodule.num_workers.SPLIT=0`, where `SPLIT` is `train`, `val`, and `test`.
+
 To plot Zatom-1's inference speed results for each dataset
 
 ```bash
