@@ -1,6 +1,6 @@
 name: finetune_sweep_tft_qm9-all-prop-pred_2025-12-26_12-00-00
 project: zatom
-entity: zatom
+entity: null
 program: zatom/train_fm.py
 
 method: grid
